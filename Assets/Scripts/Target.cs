@@ -14,15 +14,30 @@ public class Target : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        rb.AddForce(Vector3.up * Random.Range(12, 16), ForceMode.Impulse);
-        rb.AddTorque(Random.Range(-torqueRange, torqueRange), Random.Range(-torqueRange, torqueRange), Random.Range(-torqueRange, torqueRange),ForceMode.Impulse);
+        rb.AddForce(RandomForce(),ForceMode.Impulse);
+        rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
-        this.transform.position = new Vector3(Random.Range(-spawnPos, spawnPos), -spawnPosY);
+        this.transform.position = RandomSpawnPos();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    Vector3 RandomForce()
+    {
+        return Vector3.up * Random.Range(12, 16);
+    }
+
+    float RandomTorque()
+    {
+        return Random.Range(-torqueRange, torqueRange);
+    }
+
+    Vector3 RandomSpawnPos()
+    {
+        return new Vector3(Random.Range(-spawnPos, spawnPos), -spawnPosY);
     }
 }
