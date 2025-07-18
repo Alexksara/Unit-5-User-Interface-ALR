@@ -9,14 +9,20 @@ public class Target : MonoBehaviour
     [SerializeField] float torqueRange = 10f;
     [SerializeField] float spawnPos = 4f;
     [SerializeField] float spawnPosY = 2;
+
+    public ParticleSystem explosionParticle;
+    public int PointValue;
+
+    private GameManager gameManager;
     private Rigidbody rb;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         rb.AddForce(RandomForce(),ForceMode.Impulse);
         rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-
         this.transform.position = RandomSpawnPos();
     }
 
@@ -28,8 +34,9 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked on object"); 
         Destroy(gameObject);
+        Instantiate(explosionParticle,transform.position,explosionParticle.transform.rotation);
+        gameManager.UpdateScore(PointValue);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,5 +57,10 @@ public class Target : MonoBehaviour
     private Vector3 RandomSpawnPos()
     {
         return new Vector3(Random.Range(-spawnPos, spawnPos), -spawnPosY);
+    }
+
+    public void AddGameManager(GameManager gm)
+    {
+        gameManager = gm;
     }
 }

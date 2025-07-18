@@ -172,3 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f780cf85ce59a44bcddfd216fe679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceMin: 12
+  forceMax: 16
+  torqueRange: 10
+  spawnPos: 4
+  spawnPosY: 2
+  explosionParticle: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
+  PointValue: -20
