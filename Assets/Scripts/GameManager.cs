@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(spawnRate);
-        int index = Random.Range(0, targets.Count);
+            int index = Random.Range(0, targets.Count);
             Instantiate(targets[index]);
         }
     }

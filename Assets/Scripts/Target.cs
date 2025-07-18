@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     [SerializeField] float forceMax = 16f;
     [SerializeField] float torqueRange = 10f;
     [SerializeField] float spawnPos = 4f;
-    [SerializeField] float spawnPosY = 6;
+    [SerializeField] float spawnPosY = 2;
     private Rigidbody rb;
     void Start()
     {
@@ -26,17 +26,28 @@ public class Target : MonoBehaviour
         
     }
 
-    Vector3 RandomForce()
+    private void OnMouseDown()
     {
-        return Vector3.up * Random.Range(12, 16);
+        Debug.Log("Clicked on object"); 
+        Destroy(gameObject);
     }
 
-    float RandomTorque()
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
+
+    private Vector3 RandomForce()
+    {
+        return Vector3.up * Random.Range(forceMin, forceMax);
+    }
+
+    private float RandomTorque()
     {
         return Random.Range(-torqueRange, torqueRange);
     }
 
-    Vector3 RandomSpawnPos()
+    private Vector3 RandomSpawnPos()
     {
         return new Vector3(Random.Range(-spawnPos, spawnPos), -spawnPosY);
     }
